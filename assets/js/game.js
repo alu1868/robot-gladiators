@@ -47,7 +47,7 @@ var fight = function(enemyName) {
 
       // check enemy's health
     if (enemyHealth <= 0) {
-      //enemy has died
+      // enemy has died
       window.alert(enemyName + " has died!");
 
       //award player money for winning
@@ -56,7 +56,7 @@ var fight = function(enemyName) {
       // leave while () loop since enemy is dead
       break;
 
-      //enemy is still alive, display current health of enemy
+      // enemy is still alive, display current health of enemy
     } else {
       window.alert(enemyName + ' still has ' + enemyHealth + 'health left.');
     }
@@ -82,29 +82,34 @@ var fight = function(enemyName) {
 
 
   
+// function to start a new game
+function startGame(){
+  // reset player stats
+  playerHealth = 100;
+  playerAttack = 10;
+  playerMoney = 10;
 
-// run fight function to start game
-for(var i = 0; i < enemyNames.length; i++) {
-  // if palyer is still alive, keep fighting
-  if (playerHealth > 0) {
-    //let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
-    window.alert("Welcome to Robot Gladiators! Roung" + (i + 1));
+  // run fight function to start game
+  for(var i = 0; i < enemyNames.length; i++) {
+    // if palyer is still alive, keep fighting
+    if (playerHealth > 0) {
+      window.alert("Welcome to Robot Gladiators! Roung" + (i + 1));
 
-    // pick new enemy to fight based on the index of the enemyNames array
-    var pickedEnemyName = enemyNames[i];
+      var pickedEnemyName = enemyNames[i];
 
-    // reset enemyHealth before starting new fight
-    enemyHealth = 50;
+      enemyHealth = 50;
 
-    // use debugger to pause script from running and check what's going on at that moment in the code
-    // debugger;
+      fight(pickedEnemyName);
+    }
 
-    // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
-    fight(pickedEnemyName);
+    else {
+      window.alert("You have lost your robot in battle! Game Over!");
+      break;
+    }
   }
+  // play again?
+  startGame();
+};
 
-  else {
-    window.alert("You have lost your robot in battle! Game Over!");
-    break;
-  }
-}
+// start the game when the page loads
+startGame();
